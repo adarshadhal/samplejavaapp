@@ -22,7 +22,7 @@
             kubectl expose deployment adapp --name adsvc --type NodePort --port 80 --target-port 8080
          
     - name: increase replicas 
-      shell: kubectl scale deploy sampleapp --replicas=2
+      shell: kubectl scale deploy adapp --replicas=2
       
     #- name: deploy app
     #  shell: kubectl create deployment sampleapp --image=lerndevops/samplejavaapp:{{ build }}
