@@ -3,24 +3,24 @@
   tasks: 
     - name: Deploying Application pods...
       shell: | 
-         if [ `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep sampleapp | wc -l` -gt 0 ]; then  
+         if [ `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep adapp | wc -l` -gt 0 ]; then  
             echo "deleteing previous application deployment"
-            kubectl delete deployment `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep sampleapp`
+            kubectl delete deployment `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep adapp`
             echo "creating new application deployment"
-            kubectl create deployment sampleapp --image=lerndevops/samplejavaapp:{{ build }}
+            kubectl create deployment adapp --image=adarshadhal/sampleaap:{{ build }}
          else 
             echo "Deploying Sampleapp Application"
-            kubectl create deployment sampleapp --image=lerndevops/samplejavaapp:{{ build }}
+            kubectl create deployment adapp --image=adarshadhal/sampleaap:{{ build }}
          fi
     - name: deploying service
       shell: |
-         if [ `kubectl get svc | grep sampleapp  | awk '{print $1}' | wc -l` -gt 0 ]; then
+         if [ `kubectl get svc | grep adsvc  | awk '{print $1}' | wc -l` -gt 0 ]; then
             echo "app service found, No actions taken"
-            #kubectl delete svc `kubectl get svc | grep sampleapp | awk '{print $1}'`
-         else
-            echo "Creating App Services"
-            kubectl expose deployment sampleapp --name sampleapp --type NodePort --port 80 --target-port 8080
+            kubectl delete svc `kubectl get svc | grep adsvc | awk '{print $1}'`
          fi
+            echo "Creating App Services"
+            kubectl expose deployment adapp --name adsvc --type NodePort --port 80 --target-port 8080
+         
     - name: increase replicas 
       shell: kubectl scale deploy sampleapp --replicas=2
       
