@@ -1,7 +1,7 @@
 - hosts: "{{ env }}"
   become: yes
-  vars_files:
-    - group_vars/pwd.yml
+  #vars_files:
+    #- group_vars/pwd.yml
   tasks: 
     - name: Deploying Application pods...
       shell: | 
