@@ -1,5 +1,7 @@
 - hosts: "{{ env }}"
   become: yes
+  vars:
+    - /etc/ansible/pwd.yml
   tasks: 
     - name: Deploying Application pods...
       shell: | 
