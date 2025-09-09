@@ -1,7 +1,5 @@
 - hosts: "{{ env }}"
   become: yes
-  vars_files:
-    - /etc/ansible/group_vars/all/pwd.yml
   tasks: 
     - name: Deploying Application pods...
       shell: | 
